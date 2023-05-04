@@ -6,8 +6,14 @@ import styles from './ToastPlayground.module.css';
 import { ToastContext } from '../ToastProvider';
 
 function ToastPlayground() {
-  const { message, setMessage, variant, setVariant, handleAddToast } =
-    React.useContext(ToastContext);
+  const {
+    message,
+    setMessage,
+    variant,
+    setVariant,
+    VARIANT_OPTIONS,
+    handleAddToast,
+  } = React.useContext(ToastContext);
   return (
     <form
       onSubmit={(event) => {
