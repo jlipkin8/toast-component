@@ -11,9 +11,18 @@ function ToastPlayground() {
     setMessage,
     variant,
     setVariant,
+    setToasts,
     VARIANT_OPTIONS,
     handleAddToast,
   } = React.useContext(ToastContext);
+  React.useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === 'Escape') {
+        setToasts([]);
+      }
+    }
+    window.addEventListener('keydown', handleEscape);
+  }, [setToasts]);
   return (
     <form
       onSubmit={(event) => {
@@ -49,13 +58,11 @@ function ToastPlayground() {
 
         <div className={styles.row}>
           <div className={styles.label}>Variant</div>
-          <div
-            className={`${styles.inputWrapper} ${styles.radioWrapper}`}
-          >
+          <div className={`${styles.inputWrapper}`}>
             {VARIANT_OPTIONS.map((option, index) => {
               const inputId = `variant-${option}`;
               return (
-                <label key={index} htmlFor={inputId}>
+                <div className={styles.radioWrapper}>
                   <input
                     id={inputId}
                     type="radio"
@@ -66,8 +73,10 @@ function ToastPlayground() {
                       setVariant(event.target.value);
                     }}
                   />
-                  {option}
-                </label>
+                  <label key={index} htmlFor={inputId}>
+                    {option}
+                  </label>
+                </div>
               );
             })}
           </div>

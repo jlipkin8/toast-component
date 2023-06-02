@@ -35,6 +35,7 @@ function ToastProvider({ children }) {
     setVariant,
     VARIANT_OPTIONS,
     toasts,
+    setToasts,
     handleDismiss,
     handleAddToast,
   };
